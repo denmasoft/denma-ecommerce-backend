@@ -1,0 +1,16 @@
+{% extends 'dashboard/table.html' %}
+{% load i18n %}
+
+{% block table.caption %}
+  {{ block.super }}
+  <div class="pull-right">
+      <div class="form-inline">
+          <i class="icon-refresh"></i> {% trans "Bulk Actions" %}
+          <label for="inlineCheckboxes">{% trans "With selected Licenses:" %}</label>
+          <label>
+              <input type="radio" name="action" value="remove_licenses" /> {% trans "Remove Licenses" %}
+          </label>
+          <input type="submit" value="{% trans "Go!" %}" class="btn btn-primary" />
+      </div>
+  </div>
+{% endblock %}

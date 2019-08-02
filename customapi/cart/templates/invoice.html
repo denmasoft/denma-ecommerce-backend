@@ -1,0 +1,252 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>South Beauty Supply</title>
+
+    <link rel="icon" href="/images/favicon.png" type="image/x-icon">
+
+    <style>body {
+        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        text-align: center;
+        color: #777;
+    }
+
+    body h1 {
+        font-weight: 300;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+        color: #000;
+    }
+
+    body h3 {
+        font-weight: 300;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        font-style: italic;
+        color: #555;
+    }
+
+    body a {
+        color: #06F;
+    }
+
+    .invoice-box {
+        max-width: 800px;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #eee;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        font-size: 16px;
+        line-height: 24px;
+        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        color: #555;
+    }
+
+    .invoice-box table {
+        width: 100%;
+        line-height: inherit;
+        text-align: left;
+    }
+
+    .invoice-box table td {
+        padding: 5px;
+        vertical-align: top;
+    }
+
+    .invoice-box table tr td:nth-child(2) {
+        text-align: right;
+    }
+
+    .invoice-box table tr.top table td {
+        padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.top table td.title {
+        font-size: 45px;
+        line-height: 45px;
+        color: #333;
+    }
+
+    .invoice-box table tr.information table td {
+        padding-bottom: 40px;
+    }
+
+    .invoice-box table tr.heading td {
+        background: #eee;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+    }
+
+    .invoice-box table tr.details td {
+        padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.item td {
+        border-bottom: 1px solid #eee;
+    }
+
+    .invoice-box table tr.item.last td {
+        border-bottom: none;
+    }
+
+    .invoice-box table tr.total td:nth-child(2) {
+        /*border-top: 2px solid #eee;*/
+        font-weight: bold;
+    }
+    .invoice-box table tr.total td{
+        border-bottom: 1px solid #eee;    
+    }
+    
+    @media only screen and (max-width: 600px) {
+        .invoice-box table tr.top table td {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+
+        .invoice-box table tr.information table td {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+    }</style>
+    <meta name="chromesniffer" id="chromesniffer_meta" content="{&quot;SPDY&quot;:-1}">
+    <script type="text/javascript" src="chrome-extension://fhhdlnnepfjhlhilgmeepgkhjmhhhjkh/js/detector.js"></script>
+</head>
+<body>
+
+
+<div class="invoice-box">
+    <table cellpadding="0" cellspacing="0">
+        <tbody>
+        <tr class="top">
+            <td colspan="2">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td class="title">
+                            <img src="https://southbeautysupply.com/assets/img/logo-sbs.png"
+                                 style="width: 25%;max-width:300px;">
+                        </td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td colspan="2">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td class="">
+                        </td>
+                        <td>
+                            Invoice #:<br>
+                            Created: <br></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr class="information">
+            <td colspan="2">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>South Beauty Supply
+                            <br>2966 SW 8th St.Miami<br> Florida 33135
+                        </td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td colspan="2">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td></td>
+                        <td>
+                            South Beauty Supply<br>southbeauty@bellsouth.net
+                            <br>
+                            1(305) 649 6784<br>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr class="heading">
+            <td>Qty
+            </td>
+            <td style="text-align: center;">
+                Item
+            </td>
+            <td style="text-align: center;">
+                UPC
+            </td>
+            <td style="text-align: right;">
+                Price
+            </td>
+        </tr>
+        {% for item in items %}
+        <tr class="item">
+            <td style="width: 100px;">{{item.quantity}}
+            </td>
+            <td style="width:60%;text-align: center;">
+                {{item.name}}
+            </td>
+             <td style="width:60%;text-align: center;">
+                {{item.sku}}
+            </td>
+            <td style="text-align: right;">
+                ${{item.price}}
+            </td>
+        </tr>
+        {% endfor %}
+        {% for shipping in shippings %}
+            <tr class="total">
+                <td></td>
+                <td></td>
+                <td colspan="2"><p style="float: right;font-weight: bold;">{{shipping.name}}: {{shipping.price}}</p></td>
+                <td>
+                    
+                </td>
+            </tr>
+         {% endfor %}
+        {% for discount in discounts %}
+            <tr class="total">
+                <td></td>
+                <td></td>
+                <td colspan="2"><p style="float: right;font-weight: bold;">{{discount.name}}: -{{discount.price}}</p></td>
+                <td>
+                    
+                </td>
+            </tr>
+         {% endfor %}
+        <tr class="total">
+            <td></td>
+            <td></td>
+            <td colspan="2"><p style="float: right;font-weight: bold;">{{tax_name}}: ${{tax_value}}</p></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr class="total">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="float: right;font-weight: bold;">
+                Total: ${{total}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<span style="margin: 0px auto; border: 2px dotted rgb(0, 0, 0); position: absolute; z-index: 2147483647; visibility: hidden; left: 1203px; width: 0px; top: 507px; height: 0px;"></span><span
+        style="z-index: 2147483647; position: absolute; visibility: hidden; left: 1188px; width: 50px; top: 492px; height: 20px; font-size: 10px; color: black;"></span>
+</body>
+</html>

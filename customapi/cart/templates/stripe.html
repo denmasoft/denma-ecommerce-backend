@@ -1,0 +1,20 @@
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script>
+  var handler = StripeCheckout.configure({
+    key: '{{ key }}',
+    image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+    locale: 'auto',
+    token: function(token) {
+      window.location.href="http://admin.mia.websingit.com/api/stripe/{{order}}/execute/?token="+token.id;
+    }
+  });
+  $(window).load(function() {
+    handler.open({
+      name: 'Mia Fashion',
+      description: 'Mia fashion',
+      amount: '{{amount}}',
+      currency: '{{currency}}'
+    });
+})

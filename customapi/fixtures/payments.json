@@ -1,0 +1,18 @@
+[
+  {
+    "model": "payment.SourceType",
+    "pk": 1,
+    "fields": {
+      "name": "PayPal",
+      "code": "paypal"
+    }
+  },
+  {
+    "model": "payment.SourceType",
+    "pk": 2,
+    "fields": {
+      "name": "Credit Card / Debit Card",
+      "code": "stripe"
+    }
+  }
+]

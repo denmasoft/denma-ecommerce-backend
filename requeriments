@@ -1,0 +1,17 @@
+django-oscar-api
+django-cors-headers
+django
+django-braces
+configparser
+mysql-python
+django-filters
+djangorestframework-filters
+pycountry
+paypalrestsdk
+stripe
+facebook-sdk
+google-api-python-client
+
+
+
+
